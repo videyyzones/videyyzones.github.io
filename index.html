@@ -7,11 +7,27 @@
 
 <style>
 body{margin:0;background:#fff;font-family:Arial;color:#000}
-.header{padding:12px;font-weight:bold;font-size:18px}
+.header{
+  padding:16px;
+  font-weight:bold;
+  font-size:22px;
+  text-align:center;
+  letter-spacing:1px;
+}
 .container{padding:10px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.item video{width:100%;border-radius:10px}
-.item-title{font-size:13px;margin-top:5px}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.item video{
+  width:100%;
+  border-radius:10px;
+}
+.item-title{
+  font-size:13px;
+  margin-top:5px;
+}
 </style>
 </head>
 
@@ -27,7 +43,6 @@ body{margin:0;background:#fff;font-family:Arial;color:#000}
 let videos=[];
 let limit=12;
 
-// load video
 fetch('videos.json?v='+Date.now())
 .then(r=>r.json())
 .then(data=>{
@@ -47,12 +62,10 @@ function render(){
   list.innerHTML=html;
 }
 
-// klik video (tanpa iklan di homepage)
 function openVideo(id){
   location.href="video.html?id="+id;
 }
 
-// infinite scroll
 window.onscroll=()=>{
   if(window.innerHeight+window.scrollY>=document.body.offsetHeight-100){
     limit+=10;
@@ -62,4 +75,4 @@ window.onscroll=()=>{
 </script>
 
 </body>
-  </html>
+</html>
