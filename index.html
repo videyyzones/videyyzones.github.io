@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>avtube</title>
+
+<style>
+body{margin:0;background:#fff;font-family:Arial;color:#000}
+.header{padding:12px;font-weight:bold;font-size:18px}
+.container{padding:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.item video{width:100%;border-radius:10px}
+.item-title{font-size:13px;margin-top:5px}
+</style>
+</head>
+
+<body>
+
+<div class="header">avtube</div>
+
+<div class="container">
+  <div class="grid" id="list"></div>
+</div>
+
+<script>
+let videos=[];
+let limit=12;
+
+// load video
+fetch('videos.json?v='+Date.now())
+.then(r=>r.json())
+.then(data=>{
+  videos=data.sort(()=>Math.random()-0.5);
+  render();
+});
+
+function render(){
+  let html="";
+  videos.slice(0,limit).forEach(v=>{
+    html+=`
+    <div class="item" onclick="openVideo(${v.id})">
+      <video src="${v.file}" preload="metadata"></video>
+      <div class="item-title">${v.title}</div>
+    </div>`;
+  });
+  list.innerHTML=html;
+}
+
+// klik video (tanpa iklan di homepage)
+function openVideo(id){
+  location.href="video.html?id="+id;
+}
+
+// infinite scroll
+window.onscroll=()=>{
+  if(window.innerHeight+window.scrollY>=document.body.offsetHeight-100){
+    limit+=10;
+    render();
+  }
+}
+</script>
+
+</body>
+  </html>
