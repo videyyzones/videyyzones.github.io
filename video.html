@@ -3,17 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video</title>
+<title>avtube</title>
 
 <style>
 body{margin:0;background:#000}
-video{width:100%;height:100vh;object-fit:cover}
+.header{
+  text-align:center;
+  color:#fff;
+  padding:10px;
+  font-weight:bold;
+}
+video{
+  width:100%;
+  height:calc(100vh - 40px);
+  object-fit:cover;
+}
 </style>
 </head>
 
 <body>
 
-<!-- POPUNDER HALUS -->
+<div class="header">avtube</div>
+
+<!-- POPUNDER -->
 <script>
 (function(s){
   s.dataset.zone='10908808',
@@ -25,9 +37,9 @@ video{width:100%;height:100vh;object-fit:cover}
 <video id="player" controls></video>
 
 <script>
-let sudahIklan=false;
+let triggered = false;
 
-// ambil id dari URL
+// ambil id
 let id=new URLSearchParams(location.search).get("id");
 
 // load video
@@ -38,14 +50,13 @@ fetch('videos.json?v='+Date.now())
   if(v) player.src=v.file;
 });
 
-// iklan direct HALUS (delay 4 detik)
-player.addEventListener("play",()=>{
-  if(!sudahIklan){
-    sudahIklan=true;
+// trigger setelah 5 detik (HIGH CPM)
+player.addEventListener("timeupdate", () => {
+  if (!triggered && player.currentTime > 5) {
+    triggered = true;
 
-    setTimeout(()=>{
-      window.open("https://omg10.com/4/10908814","_blank");
-    },4000);
+    // trigger popunder natural
+    document.body.click();
   }
 });
 </script>
