@@ -1,9 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>TEST</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>videypro</title>
+
+<style>
+body{margin:0;font-family:Arial;background:#fff;}
+.header{padding:12px;font-weight:bold;font-size:20px;border-bottom:1px solid #eee;}
+.container{padding:10px;}
+video{width:100%;border-radius:12px;background:#000;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+.item{cursor:pointer;}
+.title{font-size:14px;font-weight:bold;margin-top:5px;}
+.btn{background:red;color:#fff;padding:12px;text-align:center;border-radius:8px;margin:10px 0;}
+</style>
 </head>
+
 <body>
-  <h1>BERHASIL 🔥</h1>
+
+<!-- POPUNDER -->
+<script src="https://pl28936974.profitablecpmratenetwork.com/7d/e5/21/7de5216dc283a24e545f9b8a0cdb49a9.js"></script>
+
+<div class="header">🔥 videypro</div>
+
+<div class="container">
+
+<video id="mainPlayer" controls playsinline></video>
+<div id="mainTitle" class="title"></div>
+
+<div class="btn" onclick="openSmart()">🔥 Lihat Video Lainnya</div>
+
+<div class="grid" id="list"></div>
+
+</div>
+
+<script>
+let videos=[], smart=false;
+
+function openSmart(){
+  if(!smart){
+    smart=true;
+    window.open("https://www.profitablecpmratenetwork.com/gjhx83kgx?key=441f9e13794f2dee405c64d3960bed10","_blank");
+  }
+}
+
+function loadVideo(i){
+  document.getElementById("mainPlayer").src = videos[i].file;
+  document.getElementById("mainTitle").innerText = videos[i].title;
+}
+
+fetch("videos.json")
+.then(r=>r.json())
+.then(d=>{
+  videos=d;
+  loadVideo(0);
+
+  let html="";
+  d.forEach((v,i)=>{
+    if(i!==0){
+      html+=`
+      <div class="item" onclick="clickVideo(${i})">
+        <video src="${v.file}"></video>
+        <div class="title">${v.title}</div>
+      </div>`;
+    }
+  });
+  document.getElementById("list").innerHTML=html;
+});
+
+function clickVideo(i){
+  openSmart();
+  loadVideo(i);
+}
+</script>
+
 </body>
-</html>
+  </html>
