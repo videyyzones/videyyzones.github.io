@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Video Feed</title>
+
+<style>
+body{margin:0;background:#000;overflow:hidden;font-family:Arial}
+
+#feed{
+height:100vh;
+overflow-y:scroll;
+scroll-snap-type:y mandatory;
+}
+
+.video{
+height:100vh;
+scroll-snap-align:start;
+position:relative;
+}
+
+video{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.info{
+position:absolute;
+bottom:80px;
+left:10px;
+color:#fff;
+text-shadow:0 0 5px #000;
+}
+
+.btn{
+position:absolute;
+bottom:30px;
+right:10px;
+background:red;
+padding:10px;
+border-radius:8px;
+color:#fff;
+font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="feed"></div>
+
+<script>
+
+const offerLink = "offer.html";
+
+/* ================= 80 VIDEO SYSTEM ================= */
+const videos = [
+"https://cdn.videy.co/nJCvaRmL1.mp4",
+"https://cdn.videy.co/lIWiiz8i1.mp4",
+"https://cdn.videy.co/apgoEF561.mp4",
+"https://cdn.videy.co/kqwXpa2F1.mp4",
+"https://cdn.videy.co/q1xn9c9E1.mp4",
+
+"https://cdn.videy.co/XA3rhe0X1.mp4",
+"https://cdn.videy.co/emvcLOdI1.mp4",
+"https://cdn.videy.co/hL3NtQAd1.mp4",
+"https://cdn.videy.co/Y7cHiXdK1.mp4",
+"https://cdn.videy.co/qIVBEiRg1.mp4",
+
+"https://cdn.videy.co/w1zhPtbo1.mp4",
+"https://cdn.videy.co/16CAzSa31.mp4",
+"https://cdn.videy.co/3CZqJVvq1.mp4",
+"https://cdn2.videy.co/eNukFzWp1.mp4",
+"https://cdn2.videy.co/gXHqwJeh1.mp4",
+
+"https://cdn2.videy.co/Usf1OLry1.mp4",
+"https://cdn.videy.co/n0tjGB8H1.mp4",
+"https://cdn2.videy.co/nxwOTEJX1.mp4",
+"https://cdn2.videy.co/tFjaEQVd1.mp4",
+"https://cdn2.videy.co/AvOtwykQ1.mp4",
+
+"https://cdn2.videy.co/jMf0mUbn1.mp4",
+"https://cdn2.videy.co/r4mviLtP1.mp4",
+"https://cdn2.videy.co/UtQwWd691.mp4",
+"https://cdn2.videy.co/dzSbnWFm1.mp4",
+"https://cdn2.videy.co/YXS1XP3E1.mp4",
+
+"https://cdn2.videy.co/Q6u9UHBD1.mp4",
+"https://cdn2.videy.co/9bd9e0ed1.mp4",
+"https://cdn.videy.co/CWU5zWHn1.mp4",
+"https://cdn2.videy.co/cW0Qe12i1.mp4",
+"https://cdn.videy.co/MFvDnroa1.mp4",
+
+"https://cdn2.videy.co/AFFLUZiC1.mp4",
+"https://cdn.videy.co/bDR9MOVm1.mp4",
+"https://cdn2.videy.co/NuVDPGLq1.mp4",
+"https://cdn.videy.co/dmtW31Fd1.mp4",
+"https://cdn2.videy.co/LusvRm4V1.mp4",
+
+"https://cdn.videy.co/JCmEablx1.mp4",
+"https://cdn2.videy.co/El83H4f01.mp4",
+"https://cdn2.videy.co/My0O2PVZ1.mp4",
+"https://cdn.videy.co/6YskBYvk1.mp4",
+"https://cdn2.videy.co/Ip95peo51.mp4",
+
+"https://cdn.videy.co/XNMUTWWn1.mp4",
+"https://cdn2.videy.co/JEZkEHsb1.mp4",
+"https://cdn.videy.co/m8uOvANC1.mp4",
+"https://cdn.videy.co/6DUw3c751.mp4",
+"https://cdn2.videy.co/wgcbibEN1.mp4",
+
+"https://cdn.videy.co/AwB9LIc31.mp4",
+"https://cdn.videy.co/TyfRr7yF1.mp4",
+"https://cdn2.videy.co/W8RlSSpg1.mp4",
+"https://cdn2.videy.co/Mz1Riufx1.mp4",
+"https://cdn2.videy.co/ssd4keuh1.mp4",
+
+/* ================= 30 SLOT TAMBAHAN ================= */
+"PASTE_1","PASTE_2","PASTE_3","PASTE_4","PASTE_5",
+"PASTE_6","PASTE_7","PASTE_8","PASTE_9","PASTE_10",
+"PASTE_11","PASTE_12","PASTE_13","PASTE_14","PASTE_15",
+"PASTE_16","PASTE_17","PASTE_18","PASTE_19","PASTE_20",
+"PASTE_21","PASTE_22","PASTE_23","PASTE_24","PASTE_25",
+"PASTE_26","PASTE_27","PASTE_28","PASTE_29","PASTE_30"
+];
+
+const feed = document.getElementById("feed");
+
+videos.forEach((src,i)=>{
+
+const div = document.createElement("div");
+div.className="video";
+
+div.innerHTML=`
+<video src="${src}" muted playsinline loop></video>
+<div class="info">Video ${i+1}</div>
+<div class="btn">Like ❤️</div>
+`;
+
+const video = div.querySelector("video");
+
+const obs = new IntersectionObserver((e)=>{
+e.forEach(x=>{
+if(x.isIntersecting){
+video.play().catch(()=>{});
+}else{
+video.pause();
+}
+});
+},{threshold:0.7});
+
+obs.observe(div);
+
+/* optional monetization button */
+div.querySelector(".btn").onclick=()=>{
+window.open(offerLink,"_blank");
+};
+
+feed.appendChild(div);
+});
+
+</script>
+
+</body>
+  </html>
