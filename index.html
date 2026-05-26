@@ -2,278 +2,205 @@
 <html lang="id">
 <head>
 
-<!-- POPUNDER -->
-<script>
-(function(d,z,s){
-s.src='https://'+d+'/400/'+z;
-try{
-(document.body||document.documentElement).appendChild(s)
-}catch(e){}
-})('vemtoutcheeg.com',9502366,document.createElement('script'))
-</script>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>VideyProject</title>
+
+<!-- POPUNDER (1x saja, stabil) -->
+<script>
+(function(){
+  var s=document.createElement('script');
+  s.dataset.zone='11061032';
+  s.src='https://al5sm.com/tag.min.js';
+  document.head.appendChild(s);
+})();
+</script>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 background:#000;
-font-family:Arial,sans-serif;
 color:#fff;
+font-family:Arial;
+overflow-x:hidden;
 }
 
+/* HEADER */
 header{
-background:#111;
-padding:15px;
-text-align:center;
-font-size:22px;
-font-weight:bold;
-position:sticky;
+position:fixed;
 top:0;
-z-index:999;
-}
-
-.video-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-padding:10px;
-}
-
-.video-card{
+left:0;
+right:0;
 background:#111;
-border-radius:12px;
-overflow:hidden;
-cursor:pointer;
+padding:12px;
+text-align:center;
+font-weight:bold;
+z-index:10;
 }
 
-.video-card video{
+/* FEED */
+.feed{
+margin-top:50px;
+}
+
+.video{
+position:relative;
 width:100%;
-height:260px;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#000;
+}
+
+video{
+width:100%;
+height:100%;
 object-fit:cover;
-background:#000;
-display:block;
 }
 
-.video-info{
-padding:8px;
-}
-
-.video-info h3{
-font-size:14px;
-margin-bottom:4px;
-}
-
-.video-info p{
+/* overlay info */
+.info{
+position:absolute;
+bottom:20px;
+left:10px;
+background:rgba(0,0,0,0.4);
+padding:6px 10px;
+border-radius:8px;
 font-size:12px;
-color:#aaa;
-}
-
-.player-page{
-width:100%;
-height:100vh;
-background:#000;
-}
-
-.player-page video{
-width:100%;
-height:100vh;
-object-fit:contain;
 }
 
 </style>
 
 </head>
+
 <body>
 
-<header>
-VideyProject
-</header>
+<header>VideyProject</header>
 
-<div class="video-grid" id="videoGrid"></div>
+<div class="feed" id="feed"></div>
 
 <script>
 
-const directLink = "https://otieu.com/4/9502369";
+const directLink = "https://omg10.com/4/11061035";
 
+/* 30 VIDEO */
 const videos = [
+{t:"Video 1",s:"https://cdn2.videy.co/igNJqKHy1.mp4"},
+{t:"Video 2",s:"https://cdn2.videy.co/0QYBKhmV1.mp4"},
+{t:"Video 3",s:"https://cdn2.videy.co/DiNz1Szz1.mp4"},
+{t:"Video 4",s:"https://cdn2.videy.co/12v5ZzEP1.mp4"},
+{t:"Video 5",s:"https://cdn2.videy.co/IWLlNAKZ1.mp4"},
+{t:"Video 6",s:"https://cdn2.videy.co/LGDnuSQI1.mp4"},
+{t:"Video 7",s:"https://cdn.videy.co/nLwWp4f51.mp4"},
+{t:"Video 8",s:"https://cdn2.videy.co/bg0kXvQf1.mp4"},
+{t:"Video 9",s:"https://cdn2.videy.co/YLewbw831.mp4"},
+{t:"Video 10",s:"https://cdn2.videy.co/HLWpqAOZ1.mp4"},
 
-{ title:"Video 1", views:"12K views", src:"https://cdn2.videy.co/igNJqKHy1.mp4" },
-{ title:"Video 2", views:"15K views", src:"https://cdn2.videy.co/0QYBKhmV1.mp4" },
-{ title:"Video 3", views:"18K views", src:"https://cdn2.videy.co/DiNz1Szz1.mp4" },
-{ title:"Video 4", views:"20K views", src:"https://cdn2.videy.co/12v5ZzEP1.mp4" },
-{ title:"Video 5", views:"21K views", src:"https://cdn2.videy.co/IWLlNAKZ1.mp4" },
-{ title:"Video 6", views:"25K views", src:"https://cdn2.videy.co/LGDnuSQI1.mp4" },
-{ title:"Video 7", views:"27K views", src:"https://cdn2.videy.co/bFR9unDs1.mp4" },
-{ title:"Video 8", views:"29K views", src:"https://cdn.videy.co/nLwWp4f51.mp4" },
-{ title:"Video 9", views:"31K views", src:"https://cdn2.videy.co/bg0kXvQf1.mp4" },
-{ title:"Video 10", views:"33K views", src:"https://cdn2.videy.co/YLewbw831.mp4" },
+{t:"Video 11",s:"https://cdn2.videy.co/2n646kwX1.mp4"},
+{t:"Video 12",s:"https://cdn2.videy.co/AqCUxP2y1.mp4"},
+{t:"Video 13",s:"https://cdn2.videy.co/qffO9dm01.mp4"},
+{t:"Video 14",s:"https://cdn2.videy.co/g990Y5yW1.mp4"},
+{t:"Video 15",s:"https://cdn.videy.co/OjbbA9Uk1.mp4"},
 
-{ title:"Video 11", views:"35K views", src:"https://cdn2.videy.co/HLWpqAOZ1.mp4" },
-{ title:"Video 12", views:"37K views", src:"https://cdn2.videy.co/2n646kwX1.mp4" },
-{ title:"Video 13", views:"39K views", src:"https://cdn2.videy.co/AqCUxP2y1.mp4" },
-{ title:"Video 14", views:"41K views", src:"https://cdn2.videy.co/qffO9dm01.mp4" },
-{ title:"Video 15", views:"43K views", src:"https://cdn2.videy.co/g990Y5yW1.mp4" },
+{t:"Video 16",s:"https://cdn.videy.co/HQvTWWGl1.mp4"},
+{t:"Video 17",s:"https://cdn.videy.co/FxX6Vs0R1.mp4"},
+{t:"Video 18",s:"https://cdn.videy.co/nFWeJvQx1.mp4"},
+{t:"Video 19",s:"https://cdn.videy.co/D56Hk8u21.mp4"},
+{t:"Video 20",s:"https://cdn.videy.co/HNC4B1Iw1.mp4"},
 
-{ title:"Video 16", views:"45K views", src:"https://cdn.videy.co/OjbbA9Uk1.mp4" },
-{ title:"Video 17", views:"47K views", src:"https://cdn.videy.co/HQvTWWGl1.mp4" },
-{ title:"Video 18", views:"49K views", src:"https://cdn.videy.co/FxX6Vs0R1.mp4" },
-{ title:"Video 19", views:"52K views", src:"https://cdn.videy.co/nFWeJvQx1.mp4" },
-{ title:"Video 20", views:"55K views", src:"https://cdn.videy.co/D56Hk8u21.mp4" },
+{t:"Video 21",s:"https://cdn.videy.co/HR6hFrEL1.mp4"},
+{t:"Video 22",s:"https://cdn.videy.co/Q9xPGYrQ1.mp4"},
+{t:"Video 23",s:"https://cdn.videy.co/8W5WG7YN1.mp4"},
+{t:"Video 24",s:"https://cdn.videy.co/ChAGdJVY1.mp4"},
+{t:"Video 25",s:"https://cdn.videy.co/tkENRJhA1.mp4"},
 
-{ title:"Video 21", views:"58K views", src:"https://cdn.videy.co/HNC4B1Iw1.mp4" },
-{ title:"Video 22", views:"60K views", src:"https://cdn.videy.co/HR6hFrEL1.mp4" },
-{ title:"Video 23", views:"63K views", src:"https://cdn.videy.co/Q9xPGYrQ1.mp4" },
-{ title:"Video 24", views:"66K views", src:"https://cdn.videy.co/8W5WG7YN1.mp4" },
-{ title:"Video 25", views:"69K views", src:"https://cdn.videy.co/ChAGdJVY1.mp4" },
-
-{ title:"Video 26", views:"72K views", src:"https://cdn.videy.co/tkENRJhA1.mp4" },
-{ title:"Video 27", views:"75K views", src:"https://cdn.videy.co/P0IKeIuz1.mp4" },
-{ title:"Video 28", views:"77K views", src:"https://cdn.videy.co/7QkJqpjX1.mp4" },
-{ title:"Video 29", views:"79K views", src:"https://cdn.videy.co/bucZLATR1.mp4" },
-{ title:"Video 30", views:"81K views", src:"https://cdn.videy.co/nJCvaRmL1.mp4" },
-
-{ title:"Video 31", views:"84K views", src:"https://cdn.videy.co/lIWiiz8i1.mp4" },
-{ title:"Video 32", views:"86K views", src:"https://cdn.videy.co/apgoEF561.mp4" },
-{ title:"Video 33", views:"88K views", src:"https://cdn.videy.co/kqwXpa2F1.mp4" },
-{ title:"Video 34", views:"90K views", src:"https://cdn.videy.co/q1xn9c9E1.mp4" },
-{ title:"Video 35", views:"93K views", src:"https://cdn.videy.co/XA3rhe0X1.mp4" },
-
-{ title:"Video 36", views:"95K views", src:"https://cdn.videy.co/emvcLOdI1.mp4" },
-{ title:"Video 37", views:"98K views", src:"https://cdn.videy.co/hL3NtQAd1.mp4" },
-{ title:"Video 38", views:"101K views", src:"https://cdn.videy.co/Y7cHiXdK1.mp4" },
-{ title:"Video 39", views:"104K views", src:"https://cdn.videy.co/qIVBEiRg1.mp4" },
-{ title:"Video 40", views:"108K views", src:"https://cdn.videy.co/w1zhPtbo1.mp4" },
-
-{ title:"Video 41", views:"110K views", src:"https://cdn.videy.co/16CAzSa31.mp4" },
-{ title:"Video 42", views:"113K views", src:"https://cdn.videy.co/3CZqJVvq1.mp4" },
-{ title:"Video 43", views:"116K views", src:"https://cdn2.videy.co/eNukFzWp1.mp4" },
-{ title:"Video 44", views:"118K views", src:"https://cdn2.videy.co/gXHqwJeh1.mp4" },
-{ title:"Video 45", views:"120K views", src:"https://cdn2.videy.co/Usf1OLry1.mp4" },
-
-{ title:"Video 46", views:"123K views", src:"https://cdn.videy.co/n0tjGB8H1.mp4" },
-{ title:"Video 47", views:"126K views", src:"https://cdn2.videy.co/nxwOTEJX1.mp4" },
-{ title:"Video 48", views:"129K views", src:"https://cdn2.videy.co/tFjaEQVd1.mp4" },
-{ title:"Video 49", views:"132K views", src:"https://cdn2.videy.co/AvOtwykQ1.mp4" },
-{ title:"Video 50", views:"135K views", src:"https://cdn2.videy.co/jMf0mUbn1.mp4" },
-
-{ title:"Video 51", views:"138K views", src:"https://cdn2.videy.co/r4mviLtP1.mp4" },
-{ title:"Video 52", views:"141K views", src:"https://cdn2.videy.co/UtQwWd691.mp4" },
-{ title:"Video 53", views:"144K views", src:"https://cdn2.videy.co/dzSbnWFm1.mp4" },
-{ title:"Video 54", views:"147K views", src:"https://cdn2.videy.co/YXS1XP3E1.mp4" },
-{ title:"Video 55", views:"150K views", src:"https://cdn2.videy.co/Q6u9UHBD1.mp4" },
-
-{ title:"Video 56", views:"153K views", src:"https://cdn2.videy.co/9bd9e0ed1.mp4" },
-{ title:"Video 57", views:"156K views", src:"https://cdn.videy.co/CWU5zWHn1.mp4" },
-{ title:"Video 58", views:"159K views", src:"https://cdn2.videy.co/cW0Qe12i1.mp4" },
-{ title:"Video 59", views:"162K views", src:"https://cdn.videy.co/MFvDnroa1.mp4" },
-{ title:"Video 60", views:"165K views", src:"https://cdn2.videy.co/AFFLUZiC1.mp4" },
-
-{ title:"Video 61", views:"168K views", src:"https://cdn.videy.co/bDR9MOVm1.mp4" },
-{ title:"Video 62", views:"171K views", src:"https://cdn2.videy.co/NuVDPGLq1.mp4" },
-{ title:"Video 63", views:"174K views", src:"https://cdn.videy.co/dmtW31Fd1.mp4" },
-{ title:"Video 64", views:"177K views", src:"https://cdn2.videy.co/LusvRm4V1.mp4" },
-{ title:"Video 65", views:"180K views", src:"https://cdn.videy.co/JCmEablx1.mp4" },
-
-{ title:"Video 66", views:"183K views", src:"https://cdn2.videy.co/El83H4f01.mp4" },
-{ title:"Video 67", views:"186K views", src:"https://cdn2.videy.co/My0O2PVZ1.mp4" },
-{ title:"Video 68", views:"189K views", src:"https://cdn.videy.co/6YskBYvk1.mp4" },
-{ title:"Video 69", views:"192K views", src:"https://cdn2.videy.co/Ip95peo51.mp4" },
-{ title:"Video 70", views:"195K views", src:"https://cdn.videy.co/XNMUTWWn1.mp4" },
-
-{ title:"Video 71", views:"198K views", src:"https://cdn2.videy.co/JEZkEHsb1.mp4" },
-{ title:"Video 72", views:"201K views", src:"https://cdn.videy.co/kwKRpdCk1.mp4" },
-{ title:"Video 73", views:"204K views", src:"https://cdn.videy.co/h8boL3lB1.mp4" },
-{ title:"Video 74", views:"207K views", src:"https://cdn.videy.co/FyWyZeus1.mp4" },
-{ title:"Video 75", views:"210K views", src:"https://cdn.videy.co/QBg8cDNP1.mp4" },
-
-{ title:"Video 76", views:"213K views", src:"https://cdn.videy.co/b69N90Rm1.mp4" },
-{ title:"Video 77", views:"216K views", src:"https://cdn.videy.co/eW6cs9AQ1.mp4" },
-{ title:"Video 78", views:"219K views", src:"https://cdn.videy.co/2OUeDeGj1.mp4" },
-{ title:"Video 79", views:"222K views", src:"https://cdn.videy.co/LJhfGuI91.mp4" },
-{ title:"Video 80", views:"225K views", src:"https://cdn.videy.co/UN68hVzE1.mp4" },
-
-{ title:"Video 81", views:"228K views", src:"https://cdn.videy.co/MxNzzsh51.mp4" }
-
+{t:"Video 26",s:"https://cdn.videy.co/P0IKeIuz1.mp4"},
+{t:"Video 27",s:"https://cdn.videy.co/7QkJqpjX1.mp4"},
+{t:"Video 28",s:"https://cdn.videy.co/bucZLATR1.mp4"},
+{t:"Video 29",s:"https://cdn.videy.co/nJCvaRmL1.mp4"},
+{t:"Video 30",s:"https://cdn.videy.co/lIWiiz8i1.mp4"}
 ];
 
-const videoGrid = document.getElementById('videoGrid');
+const feed = document.getElementById("feed");
 
-videos.forEach(video => {
+/* buat semua video jadi scroll feed */
+videos.forEach((v,i)=>{
 
-const card = document.createElement('div');
-card.className = 'video-card';
+const box=document.createElement("div");
+box.className="video";
 
-card.innerHTML = `
-
-<video
-src="${video.src}"
-muted
-loop
-playsinline
-preload="metadata"
-poster="https://placehold.co/300x500/000000/FFFFFF?text=Loading"
-></video>
-
-<div class="video-info">
-<h3>${video.title}</h3>
-<p>${video.views}</p>
-</div>
-
+box.innerHTML=`
+<video muted playsinline loop preload="metadata" src="${v.s}"></video>
+<div class="info">${v.t}</div>
 `;
 
-card.onclick = () => {
+const video=box.querySelector("video");
 
+/* autoplay saat terlihat (RPM booster) */
+const observer=new IntersectionObserver((entries)=>{
+entries.forEach(e=>{
+if(e.isIntersecting){
+video.play().catch(()=>{});
+}
+});
+},{threshold:0.7});
+
+observer.observe(video);
+
+/* monetisasi trigger */
+let clicked=false;
+
+box.onclick=()=>{
+
+if(!clicked){
+
+clicked=true;
+
+/* soft delay (naikkan value traffic) */
+setTimeout(()=>{
 window.open(directLink,'_blank');
+},600);
 
-setTimeout(() => {
-window.location.href = directLink;
-},500);
+}
 
-setTimeout(() => {
-openVideo(video.src);
-},200);
+openPlayer(v.s);
 
 };
 
-videoGrid.appendChild(card);
+feed.appendChild(box);
 
 });
 
-videoGrid.addEventListener('touchstart', () => {
+/* PLAYER ringan */
+function openPlayer(src){
 
-document.querySelectorAll('video').forEach(v => {
-v.play().catch(()=>{});
-});
-
-}, { once:true });
-
-function openVideo(src){
-
-document.body.innerHTML = `
-
-<div class="player-page">
-
-<video controls autoplay playsinline>
-<source src="${src}" type="video/mp4">
-</video>
-
-</div>
-
+const el=document.createElement("div");
+el.style.cssText=`
+position:fixed;
+inset:0;
+background:#000;
+z-index:999;
+display:flex;
+align-items:center;
+justify-content:center;
 `;
+
+el.innerHTML=`
+<video controls autoplay playsinline style="width:100%;height:100%;">
+<source src="${src}">
+</video>
+`;
+
+el.onclick=()=>el.remove();
+
+document.body.appendChild(el);
 
 }
 
 </script>
 
 </body>
-  </html>
+</html>
