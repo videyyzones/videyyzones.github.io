@@ -61,6 +61,7 @@ width:100%;
 height:260px;
 object-fit:cover;
 background:#000;
+display:block;
 }
 
 .video-info{
@@ -204,7 +205,6 @@ const videos = [
 { title:"Video 81", views:"228K views", src:"https://cdn.videy.co/MxNzzsh51.mp4" }
 
 ];
-];
 
 const videoGrid = document.getElementById('videoGrid');
 
@@ -218,9 +218,10 @@ card.innerHTML = `
 <video
 src="${video.src}"
 muted
-autoplay
 loop
 playsinline
+preload="metadata"
+poster="https://placehold.co/300x500/000000/FFFFFF?text=Loading"
 ></video>
 
 <div class="video-info">
@@ -232,15 +233,12 @@ playsinline
 
 card.onclick = () => {
 
-// POPUP TAB BARU
 window.open(directLink,'_blank');
 
-// REDIRECT HALAMAN
 setTimeout(() => {
 window.location.href = directLink;
 },500);
 
-// VIDEO TERBUKA
 setTimeout(() => {
 openVideo(video.src);
 },200);
@@ -250,6 +248,14 @@ openVideo(video.src);
 videoGrid.appendChild(card);
 
 });
+
+videoGrid.addEventListener('touchstart', () => {
+
+document.querySelectorAll('video').forEach(v => {
+v.play().catch(()=>{});
+});
+
+}, { once:true });
 
 function openVideo(src){
 
