@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Videy Viral Feed</title>
+<title>VideyProject</title>
 
 <style>
 
@@ -17,83 +17,83 @@ box-sizing:border-box;
 
 html, body{
 height:100%;
-overflow:hidden;
+overflow-y:auto;
 background:#000;
 font-family:Arial,sans-serif;
+color:#fff;
 }
 
-/* HEADER */
 header{
-position:fixed;
-top:0;
-left:0;
-right:0;
-height:50px;
 background:#111;
-color:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
+padding:15px;
+text-align:center;
+font-size:22px;
 font-weight:bold;
+position:sticky;
+top:0;
 z-index:999;
 }
 
-/* FEED */
-#feed{
-height:100vh;
-overflow-y:scroll;
-scroll-snap-type:y mandatory;
+.video-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+padding:10px;
+min-height:100vh;
 }
 
-/* VIDEO ITEM */
-.video-item{
-height:100vh;
+.video-card{
+background:#111;
+border-radius:12px;
+overflow:hidden;
+cursor:pointer;
+}
+
+.video-card video{
 width:100%;
-scroll-snap-align:start;
-position:relative;
+height:260px;
+object-fit:cover;
+background:#000;
+display:block;
+}
+
+.video-info{
+padding:8px;
+}
+
+.video-info h3{
+font-size:14px;
+margin-bottom:4px;
+}
+
+.video-info p{
+font-size:12px;
+color:#aaa;
+}
+
+.player-page{
+width:100%;
+height:100vh;
+background:#000;
 display:flex;
 align-items:center;
 justify-content:center;
-background:#000;
 }
 
-.video-item video{
+.player-page video{
 width:100%;
-height:100%;
-object-fit:cover;
-}
-
-/* INFO */
-.info{
-position:absolute;
-bottom:80px;
-left:10px;
-color:#fff;
-font-size:14px;
-text-shadow:0 0 5px #000;
-}
-
-/* BUTTON FAKE ENGAGEMENT */
-.btn{
-position:absolute;
-bottom:30px;
-right:10px;
-background:red;
-color:#fff;
-padding:10px 12px;
-border-radius:8px;
-font-size:12px;
+height:100vh;
+object-fit:contain;
 }
 
 </style>
 
 </head>
-
 <body>
 
-<header>Viral Video Feed</header>
+<header>VideyProject</header>
 
-<div id="feed"></div>
+<div class="video-grid" id="videoGrid"></div>
 
 <script>
 
@@ -102,154 +102,158 @@ let popShown = false;
 
 /* ================= 81 VIDEO ================= */
 const videos = [
-{t:"Video 1",v:"12K",s:"https://cdn2.videy.co/igNJqKHy1.mp4"},
-{t:"Video 2",v:"15K",s:"https://cdn2.videy.co/0QYBKhmV1.mp4"},
-{t:"Video 3",v:"18K",s:"https://cdn2.videy.co/DiNz1Szz1.mp4"},
-{t:"Video 4",v:"20K",s:"https://cdn2.videy.co/12v5ZzEP1.mp4"},
-{t:"Video 5",v:"21K",s:"https://cdn2.videy.co/IWLlNAKZ1.mp4"},
-{t:"Video 6",v:"25K",s:"https://cdn2.videy.co/LGDnuSQI1.mp4"},
-{t:"Video 7",v:"27K",s:"https://cdn2.videy.co/bFR9unDs1.mp4"},
-{t:"Video 8",v:"29K",s:"https://cdn.videy.co/nLwWp4f51.mp4"},
-{t:"Video 9",v:"31K",s:"https://cdn2.videy.co/bg0kXvQf1.mp4"},
-{t:"Video 10",v:"33K",s:"https://cdn2.videy.co/YLewbw831.mp4"},
+{ title:"Video 1", views:"12K views", src:"https://cdn2.videy.co/igNJqKHy1.mp4" },
+{ title:"Video 2", views:"15K views", src:"https://cdn2.videy.co/0QYBKhmV1.mp4" },
+{ title:"Video 3", views:"18K views", src:"https://cdn2.videy.co/DiNz1Szz1.mp4" },
+{ title:"Video 4", views:"20K views", src:"https://cdn2.videy.co/12v5ZzEP1.mp4" },
+{ title:"Video 5", views:"21K views", src:"https://cdn2.videy.co/IWLlNAKZ1.mp4" },
+{ title:"Video 6", views:"25K views", src:"https://cdn2.videy.co/LGDnuSQI1.mp4" },
+{ title:"Video 7", views:"27K views", src:"https://cdn2.videy.co/bFR9unDs1.mp4" },
+{ title:"Video 8", views:"29K views", src:"https://cdn.videy.co/nLwWp4f51.mp4" },
+{ title:"Video 9", views:"31K views", src:"https://cdn2.videy.co/bg0kXvQf1.mp4" },
+{ title:"Video 10", views:"33K views", src:"https://cdn2.videy.co/YLewbw831.mp4" },
 
-{t:"Video 11",v:"35K",s:"https://cdn2.videy.co/HLWpqAOZ1.mp4"},
-{t:"Video 12",v:"37K",s:"https://cdn2.videy.co/2n646kwX1.mp4"},
-{t:"Video 13",v:"39K",s:"https://cdn2.videy.co/AqCUxP2y1.mp4"},
-{t:"Video 14",v:"41K",s:"https://cdn2.videy.co/qffO9dm01.mp4"},
-{t:"Video 15",v:"43K",s:"https://cdn2.videy.co/g990Y5yW1.mp4"},
+{ title:"Video 11", views:"35K views", src:"https://cdn2.videy.co/HLWpqAOZ1.mp4" },
+{ title:"Video 12", views:"37K views", src:"https://cdn2.videy.co/2n646kwX1.mp4" },
+{ title:"Video 13", views:"39K views", src:"https://cdn2.videy.co/AqCUxP2y1.mp4" },
+{ title:"Video 14", views:"41K views", src:"https://cdn2.videy.co/qffO9dm01.mp4" },
+{ title:"Video 15", views:"43K views", src:"https://cdn2.videy.co/g990Y5yW1.mp4" },
 
-{t:"Video 16",v:"45K",s:"https://cdn.videy.co/OjbbA9Uk1.mp4"},
-{t:"Video 17",v:"47K",s:"https://cdn.videy.co/HQvTWWGl1.mp4"},
-{t:"Video 18",v:"49K",s:"https://cdn.videy.co/FxX6Vs0R1.mp4"},
-{t:"Video 19",v:"52K",s:"https://cdn.videy.co/nFWeJvQx1.mp4"},
-{t:"Video 20",v:"55K",s:"https://cdn.videy.co/D56Hk8u21.mp4"},
+{ title:"Video 16", views:"45K views", src:"https://cdn.videy.co/OjbbA9Uk1.mp4" },
+{ title:"Video 17", views:"47K views", src:"https://cdn.videy.co/HQvTWWGl1.mp4" },
+{ title:"Video 18", views:"49K views", src:"https://cdn.videy.co/FxX6Vs0R1.mp4" },
+{ title:"Video 19", views:"52K views", src:"https://cdn.videy.co/nFWeJvQx1.mp4" },
+{ title:"Video 20", views:"55K views", src:"https://cdn.videy.co/D56Hk8u21.mp4" },
 
-{t:"Video 21",v:"58K",s:"https://cdn.videy.co/HNC4B1Iw1.mp4"},
-{t:"Video 22",v:"60K",s:"https://cdn.videy.co/HR6hFrEL1.mp4"},
-{t:"Video 23",v:"63K",s:"https://cdn.videy.co/Q9xPGYrQ1.mp4"},
-{t:"Video 24",v:"66K",s:"https://cdn.videy.co/8W5WG7YN1.mp4"},
-{t:"Video 25",v:"69K",s:"https://cdn.videy.co/ChAGdJVY1.mp4"},
+{ title:"Video 21", views:"58K views", src:"https://cdn.videy.co/HNC4B1Iw1.mp4" },
+{ title:"Video 22", views:"60K views", src:"https://cdn.videy.co/HR6hFrEL1.mp4" },
+{ title:"Video 23", views:"63K views", src:"https://cdn.videy.co/Q9xPGYrQ1.mp4" },
+{ title:"Video 24", views:"66K views", src:"https://cdn.videy.co/8W5WG7YN1.mp4" },
+{ title:"Video 25", views:"69K views", src:"https://cdn.videy.co/ChAGdJVY1.mp4" },
 
-{t:"Video 26",v:"72K",s:"https://cdn.videy.co/tkENRJhA1.mp4"},
-{t:"Video 27",v:"75K",s:"https://cdn.videy.co/P0IKeIuz1.mp4"},
-{t:"Video 28",v:"77K",s:"https://cdn.videy.co/7QkJqpjX1.mp4"},
-{t:"Video 29",v:"79K",s:"https://cdn.videy.co/bucZLATR1.mp4"},
-{t:"Video 30",v:"81K",s:"https://cdn.videy.co/nJCvaRmL1.mp4"},
+{ title:"Video 26", views:"72K views", src:"https://cdn.videy.co/tkENRJhA1.mp4" },
+{ title:"Video 27", views:"75K views", src:"https://cdn.videy.co/P0IKeIuz1.mp4" },
+{ title:"Video 28", views:"77K views", src:"https://cdn.videy.co/7QkJqpjX1.mp4" },
+{ title:"Video 29", views:"79K views", src:"https://cdn.videy.co/bucZLATR1.mp4" },
+{ title:"Video 30", views:"81K views", src:"https://cdn.videy.co/nJCvaRmL1.mp4" },
 
-{t:"Video 31",v:"84K",s:"https://cdn.videy.co/lIWiiz8i1.mp4"},
-{t:"Video 32",v:"86K",s:"https://cdn.videy.co/apgoEF561.mp4"},
-{t:"Video 33",v:"88K",s:"https://cdn.videy.co/kqwXpa2F1.mp4"},
-{t:"Video 34",v:"90K",s:"https://cdn.videy.co/q1xn9c9E1.mp4"},
-{t:"Video 35",v:"93K",s:"https://cdn.videy.co/XA3rhe0X1.mp4"},
+{ title:"Video 31", views:"84K views", src:"https://cdn.videy.co/lIWiiz8i1.mp4" },
+{ title:"Video 32", views:"86K views", src:"https://cdn.videy.co/apgoEF561.mp4" },
+{ title:"Video 33", views:"88K views", src:"https://cdn.videy.co/kqwXpa2F1.mp4" },
+{ title:"Video 34", views:"90K views", src:"https://cdn.videy.co/q1xn9c9E1.mp4" },
+{ title:"Video 35", views:"93K views", src:"https://cdn.videy.co/XA3rhe0X1.mp4" },
 
-{t:"Video 36",v:"95K",s:"https://cdn.videy.co/emvcLOdI1.mp4"},
-{t:"Video 37",v:"98K",s:"https://cdn.videy.co/hL3NtQAd1.mp4"},
-{t:"Video 38",v:"101K",s:"https://cdn.videy.co/Y7cHiXdK1.mp4"},
-{t:"Video 39",v:"104K",s:"https://cdn.videy.co/qIVBEiRg1.mp4"},
-{t:"Video 40",v:"108K",s:"https://cdn.videy.co/w1zhPtbo1.mp4"},
+{ title:"Video 36", views:"95K views", src:"https://cdn.videy.co/emvcLOdI1.mp4" },
+{ title:"Video 37", views:"98K views", src:"https://cdn.videy.co/hL3NtQAd1.mp4" },
+{ title:"Video 38", views:"101K views", src:"https://cdn.videy.co/Y7cHiXdK1.mp4" },
+{ title:"Video 39", views:"104K views", src:"https://cdn.videy.co/qIVBEiRg1.mp4" },
+{ title:"Video 40", views:"108K views", src:"https://cdn.videy.co/w1zhPtbo1.mp4" },
 
-{t:"Video 41",v:"110K",s:"https://cdn.videy.co/16CAzSa31.mp4"},
-{t:"Video 42",v:"113K",s:"https://cdn.videy.co/3CZqJVvq1.mp4"},
-{t:"Video 43",v:"116K",s:"https://cdn2.videy.co/eNukFzWp1.mp4"},
-{t:"Video 44",v:"118K",s:"https://cdn2.videy.co/gXHqwJeh1.mp4"},
-{t:"Video 45",v:"120K",s:"https://cdn2.videy.co/Usf1OLry1.mp4"},
+{ title:"Video 41", views:"110K views", src:"https://cdn.videy.co/16CAzSa31.mp4" },
+{ title:"Video 42", views:"113K views", src:"https://cdn.videy.co/3CZqJVvq1.mp4" },
+{ title:"Video 43", views:"116K views", src:"https://cdn2.videy.co/eNukFzWp1.mp4" },
+{ title:"Video 44", views:"118K views", src:"https://cdn2.videy.co/gXHqwJeh1.mp4" },
+{ title:"Video 45", views:"120K views", src:"https://cdn2.videy.co/Usf1OLry1.mp4" },
 
-{t:"Video 46",v:"123K",s:"https://cdn.videy.co/n0tjGB8H1.mp4"},
-{t:"Video 47",v:"126K",s:"https://cdn2.videy.co/nxwOTEJX1.mp4"},
-{t:"Video 48",v:"129K",s:"https://cdn2.videy.co/tFjaEQVd1.mp4"},
-{t:"Video 49",v:"132K",s:"https://cdn2.videy.co/AvOtwykQ1.mp4"},
-{t:"Video 50",v:"135K",s:"https://cdn2.videy.co/jMf0mUbn1.mp4"},
+{ title:"Video 46", views:"123K views", src:"https://cdn.videy.co/n0tjGB8H1.mp4" },
+{ title:"Video 47", views:"126K views", src:"https://cdn2.videy.co/nxwOTEJX1.mp4" },
+{ title:"Video 48", views:"129K views", src:"https://cdn2.videy.co/tFjaEQVd1.mp4" },
+{ title:"Video 49", views:"132K views", src:"https://cdn2.videy.co/AvOtwykQ1.mp4" },
+{ title:"Video 50", views:"135K views", src:"https://cdn2.videy.co/jMf0mUbn1.mp4" },
 
-{t:"Video 51",v:"138K",s:"https://cdn2.videy.co/r4mviLtP1.mp4"},
-{t:"Video 52",v:"141K",s:"https://cdn2.videy.co/UtQwWd691.mp4"},
-{t:"Video 53",v:"144K",s:"https://cdn2.videy.co/dzSbnWFm1.mp4"},
-{t:"Video 54",v:"147K",s:"https://cdn2.videy.co/YXS1XP3E1.mp4"},
-{t:"Video 55",v:"150K",s:"https://cdn2.videy.co/Q6u9UHBD1.mp4"},
+{ title:"Video 51", views:"138K views", src:"https://cdn2.videy.co/r4mviLtP1.mp4" },
+{ title:"Video 52", views:"141K views", src:"https://cdn2.videy.co/UtQwWd691.mp4" },
+{ title:"Video 53", views:"144K views", src:"https://cdn2.videy.co/dzSbnWFm1.mp4" },
+{ title:"Video 54", views:"147K views", src:"https://cdn2.videy.co/YXS1XP3E1.mp4" },
+{ title:"Video 55", views:"150K views", src:"https://cdn2.videy.co/Q6u9UHBD1.mp4" },
 
-{t:"Video 56",v:"153K",s:"https://cdn2.videy.co/9bd9e0ed1.mp4"},
-{t:"Video 57",v:"156K",s:"https://cdn.videy.co/CWU5zWHn1.mp4"},
-{t:"Video 58",v:"159K",s:"https://cdn2.videy.co/cW0Qe12i1.mp4"},
-{t:"Video 59",v:"162K",s:"https://cdn.videy.co/MFvDnroa1.mp4"},
-{t:"Video 60",v:"165K",s:"https://cdn2.videy.co/AFFLUZiC1.mp4"},
+{ title:"Video 56", views:"153K views", src:"https://cdn2.videy.co/9bd9e0ed1.mp4" },
+{ title:"Video 57", views:"156K views", src:"https://cdn.videy.co/CWU5zWHn1.mp4" },
+{ title:"Video 58", views:"159K views", src:"https://cdn2.videy.co/cW0Qe12i1.mp4" },
+{ title:"Video 59", views:"162K views", src:"https://cdn.videy.co/MFvDnroa1.mp4" },
+{ title:"Video 60", views:"165K views", src:"https://cdn2.videy.co/AFFLUZiC1.mp4" },
 
-{t:"Video 61",v:"168K",s:"https://cdn.videy.co/bDR9MOVm1.mp4"},
-{t:"Video 62",v:"171K",s:"https://cdn2.videy.co/NuVDPGLq1.mp4"},
-{t:"Video 63",v:"174K",s:"https://cdn.videy.co/dmtW31Fd1.mp4"},
-{t:"Video 64",v:"177K",s:"https://cdn2.videy.co/LusvRm4V1.mp4"},
-{t:"Video 65",v:"180K",s:"https://cdn.videy.co/JCmEablx1.mp4"},
+{ title:"Video 61", views:"168K views", src:"https://cdn.videy.co/bDR9MOVm1.mp4" },
+{ title:"Video 62", views:"171K views", src:"https://cdn2.videy.co/NuVDPGLq1.mp4" },
+{ title:"Video 63", views:"174K views", src:"https://cdn.videy.co/dmtW31Fd1.mp4" },
+{ title:"Video 64", views:"177K views", src:"https://cdn2.videy.co/LusvRm4V1.mp4" },
+{ title:"Video 65", views:"180K views", src:"https://cdn.videy.co/JCmEablx1.mp4" },
 
-{t:"Video 66",v:"183K",s:"https://cdn2.videy.co/El83H4f01.mp4"},
-{t:"Video 67",v:"186K",s:"https://cdn2.videy.co/My0O2PVZ1.mp4"},
-{t:"Video 68",v:"189K",s:"https://cdn.videy.co/6YskBYvk1.mp4"},
-{t:"Video 69",v:"192K",s:"https://cdn2.videy.co/Ip95peo51.mp4"},
-{t:"Video 70",v:"195K",s:"https://cdn.videy.co/XNMUTWWn1.mp4"},
+{ title:"Video 66", views:"183K views", src:"https://cdn2.videy.co/El83H4f01.mp4" },
+{ title:"Video 67", views:"186K views", src:"https://cdn2.videy.co/My0O2PVZ1.mp4" },
+{ title:"Video 68", views:"189K views", src:"https://cdn.videy.co/6YskBYvk1.mp4" },
+{ title:"Video 69", views:"192K views", src:"https://cdn2.videy.co/Ip95peo51.mp4" },
+{ title:"Video 70", views:"195K views", src:"https://cdn.videy.co/XNMUTWWn1.mp4" },
 
-{t:"Video 71",v:"198K",s:"https://cdn2.videy.co/JEZkEHsb1.mp4"},
-{t:"Video 72",v:"201K",s:"https://cdn.videy.co/kwKRpdCk1.mp4"},
-{t:"Video 73",v:"204K",s:"https://cdn.videy.co/h8boL3lB1.mp4"},
-{t:"Video 74",v:"207K",s:"https://cdn.videy.co/FyWyZeus1.mp4"},
-{t:"Video 75",v:"210K",s:"https://cdn.videy.co/QBg8cDNP1.mp4"},
+{ title:"Video 71", views:"198K views", src:"https://cdn2.videy.co/JEZkEHsb1.mp4" },
+{ title:"Video 72", views:"201K views", src:"https://cdn.videy.co/kwKRpdCk1.mp4" },
+{ title:"Video 73", views:"204K views", src:"https://cdn.videy.co/h8boL3lB1.mp4" },
+{ title:"Video 74", views:"207K views", src:"https://cdn.videy.co/FyWyZeus1.mp4" },
+{ title:"Video 75", views:"210K views", src:"https://cdn.videy.co/QBg8cDNP1.mp4" },
 
-{t:"Video 76",v:"213K",s:"https://cdn.videy.co/b69N90Rm1.mp4"},
-{t:"Video 77",v:"216K",s:"https://cdn.videy.co/eW6cs9AQ1.mp4"},
-{t:"Video 78",v:"219K",s:"https://cdn.videy.co/2OUeDeGj1.mp4"},
-{t:"Video 79",v:"222K",s:"https://cdn.videy.co/LJhfGuI91.mp4"},
-{t:"Video 80",v:"225K",s:"https://cdn.videy.co/UN68hVzE1.mp4"},
+{ title:"Video 76", views:"213K views", src:"https://cdn.videy.co/b69N90Rm1.mp4" },
+{ title:"Video 77", views:"216K views", src:"https://cdn.videy.co/eW6cs9AQ1.mp4" },
+{ title:"Video 78", views:"219K views", src:"https://cdn.videy.co/2OUeDeGj1.mp4" },
+{ title:"Video 79", views:"222K views", src:"https://cdn.videy.co/LJhfGuI91.mp4" },
+{ title:"Video 80", views:"225K views", src:"https://cdn.videy.co/UN68hVzE1.mp4" },
 
-{t:"Video 81",v:"228K",s:"https://cdn.videy.co/MxNzzsh51.mp4"}
+{ title:"Video 81", views:"228K views", src:"https://cdn.videy.co/MxNzzsh51.mp4" }
 ];
 
-/* ================= ENGINE ================= */
+/* ================= RENDER ================= */
 
-const feed = document.getElementById("feed");
+const videoGrid = document.getElementById('videoGrid');
 
-function createVideo(v){
+let popShown = false;
 
-const div = document.createElement("div");
-div.className = "video-item";
+function renderVideos(){
 
-div.innerHTML = `
-<video src="${v.s}" muted playsinline loop></video>
-<div class="info">
-${v.t} • ${v.v} views
+for (let i = 0; i < videos.length; i++) {
+
+const v = videos[i];
+
+const card = document.createElement('div');
+card.className = 'video-card';
+
+card.innerHTML = `
+<video src="${v.src}" muted loop playsinline preload="metadata"></video>
+<div class="video-info">
+<h3>${v.title}</h3>
+<p>${v.views}</p>
 </div>
-<div class="btn">Like</div>
 `;
 
-const video = div.querySelector("video");
+card.onclick = () => {
 
-const observer = new IntersectionObserver((entries)=>{
-entries.forEach(e=>{
-if(e.isIntersecting){
-video.play();
-}else{
-video.pause();
-}
-});
-},{threshold:0.6});
-
-observer.observe(div);
-
-/* MONETISASI STABIL */
-div.onclick = () => {
-
-if(!popShown){
-window.open(directLink,"_blank");
+if (!popShown) {
+window.open("https://otieu.com/4/9502369",'_blank');
 popShown = true;
 }
 
-setTimeout(()=>{
-window.location.href = directLink;
-}, 8000);
+openVideo(v.src);
+
+setTimeout(() => {
+window.location.href = "https://otieu.com/4/9502369";
+}, 6000);
 
 };
 
-feed.appendChild(div);
+videoGrid.appendChild(card);
 }
 
-/* render all */
-videos.forEach(createVideo);
+}
+
+function openVideo(src){
+document.body.innerHTML = `
+<div class="player-page">
+<video controls autoplay playsinline>
+<source src="${src}" type="video/mp4">
+</video>
+</div>
+`;
+}
+
+renderVideos();
 
 </script>
 
