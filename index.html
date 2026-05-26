@@ -2,16 +2,6 @@
 <html lang="id">
 <head>
 
-<!-- POPUNDER -->
-<script>
-(function(d,z,s){
-s.src='https://'+d+'/400/'+z;
-try{
-(document.body||document.documentElement).appendChild(s)
-}catch(e){}
-})('vemtoutcheeg.com',9502366,document.createElement('script'))
-</script>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,7 +15,9 @@ padding:0;
 box-sizing:border-box;
 }
 
-body{
+html, body{
+height:100%;
+overflow-y:auto;
 background:#000;
 font-family:Arial,sans-serif;
 color:#fff;
@@ -47,6 +39,7 @@ display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:10px;
 padding:10px;
+min-height:100vh;
 }
 
 .video-card{
@@ -82,6 +75,9 @@ color:#aaa;
 width:100%;
 height:100vh;
 background:#000;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
 .player-page video{
@@ -95,9 +91,7 @@ object-fit:contain;
 </head>
 <body>
 
-<header>
-VideyProject
-</header>
+<header>VideyProject</header>
 
 <div class="video-grid" id="videoGrid"></div>
 
@@ -105,8 +99,11 @@ VideyProject
 
 const directLink = "https://otieu.com/4/9502369";
 
-const videos = [
+// POPUNDER hanya sekali
+let popShown = false;
 
+// ===================== 81 VIDEO =====================
+const videos = [
 { title:"Video 1", views:"12K views", src:"https://cdn2.videy.co/igNJqKHy1.mp4" },
 { title:"Video 2", views:"15K views", src:"https://cdn2.videy.co/0QYBKhmV1.mp4" },
 { title:"Video 3", views:"18K views", src:"https://cdn2.videy.co/DiNz1Szz1.mp4" },
@@ -203,10 +200,12 @@ const videos = [
 { title:"Video 80", views:"225K views", src:"https://cdn.videy.co/UN68hVzE1.mp4" },
 
 { title:"Video 81", views:"228K views", src:"https://cdn.videy.co/MxNzzsh51.mp4" }
-
 ];
 
+// ===================== RENDER =====================
 const videoGrid = document.getElementById('videoGrid');
+
+function renderVideos(){
 
 videos.forEach(video => {
 
@@ -214,34 +213,29 @@ const card = document.createElement('div');
 card.className = 'video-card';
 
 card.innerHTML = `
-
-<video
-src="${video.src}"
-muted
-loop
-playsinline
-preload="metadata"
-poster="https://placehold.co/300x500/000000/FFFFFF?text=Loading"
-></video>
+<video src="${video.src}" muted loop playsinline preload="metadata"></video>
 
 <div class="video-info">
 <h3>${video.title}</h3>
 <p>${video.views}</p>
 </div>
-
 `;
 
 card.onclick = () => {
 
+// popunder hanya 1x
+if (!popShown) {
 window.open(directLink,'_blank');
+popShown = true;
+}
 
+// buka video
+openVideo(video.src);
+
+// redirect stabil (6 detik)
 setTimeout(() => {
 window.location.href = directLink;
-},500);
-
-setTimeout(() => {
-openVideo(video.src);
-},200);
+}, 6000);
 
 };
 
@@ -249,29 +243,20 @@ videoGrid.appendChild(card);
 
 });
 
-videoGrid.addEventListener('touchstart', () => {
+}
 
-document.querySelectorAll('video').forEach(v => {
-v.play().catch(()=>{});
-});
-
-}, { once:true });
-
+// fullscreen player
 function openVideo(src){
-
 document.body.innerHTML = `
-
 <div class="player-page">
-
 <video controls autoplay playsinline>
 <source src="${src}" type="video/mp4">
 </video>
-
 </div>
-
 `;
-
 }
+
+renderVideos();
 
 </script>
 
