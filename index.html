@@ -1,21 +1,93 @@
 <!doctype html>
 <html lang="id">
 <head>
+
+<!-- POPUNDER MONETAG -->
+<script>
+(function(d,z,s){
+s.src='https://'+d+'/400/'+z;
+try{
+(document.body||document.documentElement).appendChild(s)
+}catch(e){}
+})('vemtoutcheeg.com',9502366,document.createElement('script'))
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VideyProject</title>
-<link rel="stylesheet" href="style.css">
 
-<!-- POPUNDER MONETAGE -->
-<script>
-(function(s){
-s.dataset.zone='11029644',
-s.src='https://al5sm.com/tag.min.js'
-})([document.documentElement, document.body]
-.filter(Boolean)
-.pop()
-.appendChild(document.createElement('script')))
-</script>
+<title>VideyProject</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#000;
+  color:#fff;
+  font-family:Arial,sans-serif;
+}
+
+header{
+  background:#111;
+  padding:15px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+
+header h1{
+  font-size:22px;
+}
+
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  padding:10px;
+}
+
+.video-card{
+  background:#111;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.video-card video{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  background:#000;
+}
+
+.video-info{
+  padding:8px;
+}
+
+.video-info h3{
+  font-size:14px;
+}
+
+.video-info p{
+  font-size:12px;
+  color:#aaa;
+}
+
+.player-page{
+  width:100%;
+  height:100vh;
+  background:#000;
+}
+
+.player-page video{
+  width:100%;
+  height:100vh;
+  object-fit:contain;
+}
+</style>
 
 </head>
 <body>
@@ -26,6 +98,89 @@ s.src='https://al5sm.com/tag.min.js'
 
 <div class="video-grid" id="videoGrid"></div>
 
-<script src="script.js"></script>
+<script>
+
+/* DIRECTLINK AUTO REDIRECT */
+document.addEventListener('click', function() {
+  window.open('https://otieu.com/4/9502369', '_blank');
+}, { once:true });
+
+const videos = [
+  {
+    title: "Video Viral 1",
+    views: "12K views",
+    src: "https://cdn.videy.co/m8uOvANC1.mp4"
+  },
+  {
+    title: "Video Viral 2",
+    views: "18K views",
+    src: "https://cdn.videy.co/6DUw3c751.mp4"
+  },
+  {
+    title: "Video Viral 3",
+    views: "24K views",
+    src: "https://cdn2.videy.co/wgcbibEN1.mp4"
+  },
+  {
+    title: "Video Viral 4",
+    views: "33K views",
+    src: "https://cdn.videy.co/AwB9LIc31.mp4"
+  },
+  {
+    title: "Video Viral 5",
+    views: "41K views",
+    src: "https://cdn.videy.co/TyfRr7yF1.mp4"
+  },
+  {
+    title: "Video Viral 6",
+    views: "52K views",
+    src: "https://cdn2.videy.co/W8RlSSpg1.mp4"
+  }
+];
+
+const videoGrid = document.getElementById('videoGrid');
+
+videos.forEach(video => {
+
+  const card = document.createElement('div');
+  card.className = 'video-card';
+
+  card.innerHTML = `
+    <video
+      src="${video.src}"
+      muted
+      autoplay
+      loop
+      playsinline
+    ></video>
+
+    <div class="video-info">
+      <h3>${video.title}</h3>
+      <p>${video.views}</p>
+    </div>
+  `;
+
+  card.onclick = () => {
+    openVideo(video.src);
+  };
+
+  videoGrid.appendChild(card);
+
+});
+
+function openVideo(src){
+
+  document.body.innerHTML = `
+    <div class="player-page">
+      <video controls autoplay playsinline>
+        <source src="${src}" type="video/mp4">
+      </video>
+    </div>
+  `;
+
+}
+
+</script>
+
 </body>
   </html>
