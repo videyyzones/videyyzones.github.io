@@ -3,15 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VideyProject</title>
+<title>VIdeyProject</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:#000;color:#fff;font-family:Arial;}
 
 header{
-position:sticky;
-top:0;
+position:sticky;top:0;
 background:#111;
 padding:14px;
 text-align:center;
@@ -54,53 +53,43 @@ background:#000;
 <script>
 
 const videos = [
-"https://cdn2.videy.co/9bd9e0ed1.mp4",
-"https://cdn.videy.co/CWU5zWHn1.mp4",
-"https://cdn2.videy.co/cW0Qe12i1.mp4",
-"https://cdn.videy.co/MFvDnroa1.mp4",
-"https://cdn2.videy.co/AFFLUZiC1.mp4",
-"https://cdn.videy.co/bDR9MOVm1.mp4",
-"https://cdn2.videy.co/NuVDPGLq1.mp4",
-"https://cdn.videy.co/dmtW31Fd1.mp4",
-"https://cdn2.videy.co/LusvRm4V1.mp4",
-"https://cdn.videy.co/JCmEablx1.mp4",
+"https://cdn2.videy.co/igNJqKHy1.mp4",
+"https://cdn2.videy.co/0QYBKhmV1.mp4",
+"https://cdn2.videy.co/DiNz1Szz1.mp4",
+"https://cdn2.videy.co/12v5ZzEP1.mp4",
+"https://cdn2.videy.co/IWLlNAKZ1.mp4",
 
-"https://cdn2.videy.co/El83H4f01.mp4",
-"https://cdn2.videy.co/My0O2PVZ1.mp4",
-"https://cdn.videy.co/6YskBYvk1.mp4",
-"https://cdn2.videy.co/Ip95peo51.mp4",
-"https://cdn.videy.co/XNMUTWWn1.mp4",
-"https://cdn2.videy.co/JEZkEHsb1.mp4",
+"https://cdn2.videy.co/LGDnuSQI1.mp4",
+"https://cdn.videy.co/bFR9unDs1.mp4",
+"https://cdn.videy.co/nLwWp4f51.mp4",
+"https://cdn2.videy.co/bg0kXvQf1.mp4",
+"https://cdn2.videy.co/YLewbw831.mp4",
 
-"https://cdn.videy.co/m8uOvANC1.mp4",
-"https://cdn.videy.co/6DUw3c751.mp4",
-"https://cdn2.videy.co/wgcbibEN1.mp4",
-"https://cdn.videy.co/AwB9LIc31.mp4",
-"https://cdn.videy.co/TyfRr7yF1.mp4",
-"https://cdn2.videy.co/W8RlSSpg1.mp4",
-"https://cdn2.videy.co/Mz1Riufx1.mp4",
-"https://cdn2.videy.co/ssd4keuh1.mp4",
-"https://cdn.videy.co/YMAJEwJp1.mp4",
-"https://cdn2.videy.co/sE0VwbcS1.mp4",
+"https://cdn2.videy.co/HLWpqAOZ1.mp4",
+"https://cdn2.videy.co/2n646kwX1.mp4",
+"https://cdn2.videy.co/AqCUxP2y1.mp4",
+"https://cdn2.videy.co/qffO9dm01.mp4",
+"https://cdn2.videy.co/g990Y5yW1.mp4",
 
-"https://cdn.videy.co/TWRLKbDF1.mp4",
-"https://cdn2.videy.co/I7EQ9hYZ1.mp4",
-"https://cdn2.videy.co/yDYlzheT1.mp4",
-"https://cdn2.videy.co/dRJ1Cxop1.mp4",
-"https://cdn2.videy.co/MMGu7GTQ1.mp4",
-"https://cdn2.videy.co/pVV9cnwD1.mp4",
-"https://cdn2.videy.co/CdJHmdYC1.mp4",
-"https://cdn2.videy.co/zQUqynC31.mp4",
-"https://cdn2.videy.co/EOqU681P1.mp4",
-"https://cdn2.videy.co/5IWtY8SQ1.mp4",
+"https://cdn.videy.co/OjbbA9Uk1.mp4",
+"https://cdn.videy.co/HQvTWWGl1.mp4",
+"https://cdn.videy.co/FxX6Vs0R1.mp4",
+"https://cdn.videy.co/nFWeJvQx1.mp4",
+"https://cdn.videy.co/D56Hk8u21.mp4",
 
-"https://cdn2.videy.co/ElveqLNc1.mp4",
-"https://cdn2.videy.co/Oj2VURga1.mp4"
+"https://cdn.videy.co/HNC4B1Iw1.mp4",
+"https://cdn.videy.co/HR6hFrEL1.mp4",
+"https://cdn.videy.co/Q9xPGYrQ1.mp4",
+"https://cdn.videy.co/8W5WG7YN1.mp4",
+"https://cdn.videy.co/ChAGdJVY1.mp4",
+
+"https://cdn.videy.co/tkENRJhA1.mp4",
+"https://cdn.videy.co/P0IKeIuz1.mp4",
+"https://cdn.videy.co/7QkJqpjX1.mp4",
+"https://cdn.videy.co/bucZLATR1.mp4"
 ];
 
 const grid=document.getElementById("grid");
-
-const directLink="https://omg10.com/4/11061035";
 
 videos.forEach((v,i)=>{
 
