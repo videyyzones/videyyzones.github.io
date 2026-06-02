@@ -1,122 +1,154 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VideyProject</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ViideyHub</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:#000;color:#fff;font-family:Arial;}
+body{
+    margin:0;
+    background:#111;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
 
 header{
-position:sticky;
-top:0;
-background:#111;
-padding:14px;
-text-align:center;
-font-weight:bold;
+    background:#000;
+    padding:20px;
+    text-align:center;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:15px;
 }
 
 .grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-padding:10px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:15px;
 }
 
 .card{
-background:#111;
-border-radius:10px;
-overflow:hidden;
-cursor:pointer;
+    background:#1a1a1a;
+    border-radius:10px;
+    overflow:hidden;
 }
 
-.thumb{
-width:100%;
-height:180px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#000;
-color:#666;
-font-size:13px;
+video{
+    width:100%;
+    display:block;
 }
 
-.info{padding:8px;}
-.info h3{font-size:13px;}
-.info p{font-size:11px;color:#aaa;}
+.title{
+    padding:10px;
+    text-align:center;
+}
+
+footer{
+    margin-top:30px;
+    padding:20px;
+    text-align:center;
+    background:#000;
+}
 </style>
-</head>
 
+</head>
 <body>
 
-<header>VideyProject</header>
+<header>
+<h1>ViideyHub</h1>
+<p>Video Collection</p>
+</header>
 
-<div class="grid" id="grid"></div>
+<div class="container">
 
-<script>
+<div class="grid">
 
-const videos = [
-"https://cdn2.videy.co/igNJqKHy1.mp4",
-"https://cdn2.videy.co/0QYBKhmV1.mp4",
-"https://cdn2.videy.co/DiNz1Szz1.mp4",
-"https://cdn2.videy.co/12v5ZzEP1.mp4",
-"https://cdn2.videy.co/IWLlNAKZ1.mp4",
-"https://cdn2.videy.co/LGDnuSQI1.mp4",
-"https://cdn.videy.co/bFR9unDs1.mp4",
-"https://cdn.videy.co/nLwWp4f51.mp4",
-"https://cdn2.videy.co/bg0kXvQf1.mp4",
-"https://cdn2.videy.co/YLewbw831.mp4",
-
-"https://cdn2.videy.co/HLWpqAOZ1.mp4",
-"https://cdn2.videy.co/2n646kwX1.mp4",
-"https://cdn2.videy.co/AqCUxP2y1.mp4",
-"https://cdn2.videy.co/qffO9dm01.mp4",
-"https://cdn2.videy.co/g990Y5yW1.mp4",
-
-"https://cdn.videy.co/OjbbA9Uk1.mp4",
-"https://cdn.videy.co/HQvTWWGl1.mp4",
-"https://cdn.videy.co/FxX6Vs0R1.mp4",
-"https://cdn.videy.co/nFWeJvQx1.mp4",
-"https://cdn.videy.co/D56Hk8u21.mp4",
-
-"https://cdn.videy.co/HNC4B1Iw1.mp4",
-"https://cdn.videy.co/HR6hFrEL1.mp4",
-"https://cdn.videy.co/Q9xPGYrQ1.mp4",
-"https://cdn.videy.co/8W5WG7YN1.mp4",
-"https://cdn.videy.co/ChAGdJVY1.mp4",
-
-"https://cdn.videy.co/tkENRJhA1.mp4",
-"https://cdn.videy.co/P0IKeIuz1.mp4",
-"https://cdn.videy.co/7QkJqpjX1.mp4",
-"https://cdn.videy.co/bucZLATR1.mp4"
-];
-
-const grid=document.getElementById("grid");
-
-videos.forEach((v,i)=>{
-
-let el=document.createElement("div");
-el.className="card";
-
-el.innerHTML=`
-<div class="thumb">▶ Video ${i+1}</div>
-<div class="info">
-<h3>Video ${i+1}</h3>
-<p>Trending</p>
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/MnXDmMPE1.mp4"></video>
+<div class="title">Video 1</div>
 </div>
-`;
 
-el.onclick=()=>{
-window.location.href="go.html?vid="+encodeURIComponent(v);
-};
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/EydYHy9x1.mp4"></video>
+<div class="title">Video 2</div>
+</div>
 
-grid.appendChild(el);
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/5GzzyYoS1.mp4"></video>
+<div class="title">Video 3</div>
+</div>
 
-});
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/dwJv4YSQ1.mp4"></video>
+<div class="title">Video 4</div>
+</div>
 
-</script>
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/2WCMgGqN1.mp4"></video>
+<div class="title">Video 5</div>
+</div>
+
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/M6v8A7pp1.mp4"></video>
+<div class="title">Video 6</div>
+</div>
+
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/2otnBByR1.mp4"></video>
+<div class="title">Video 7</div>
+</div>
+
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/A7xiEEOC1.mp4"></video>
+<div class="title">Video 8</div>
+</div>
+
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/IK0kSMSI1.mp4"></video>
+<div class="title">Video 9</div>
+</div>
+
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/nVcq1AQl1.mp4"></video>
+<div class="title">Video 10</div>
+</div>
+
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/lwCkKxHk1.mp4"></video>
+<div class="title">Video 11</div>
+</div>
+
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/GWKfLi201.mp4"></video>
+<div class="title">Video 12</div>
+</div>
+
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/T6eoqa3X1.mp4"></video>
+<div class="title">Video 13</div>
+</div>
+
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/GQNleLmh1.mp4"></video>
+<div class="title">Video 14</div>
+</div>
+
+<div class="card">
+<video controls preload="metadata" src="https://cdn2.videy.co/XKq0c3ox1.mp4"></video>
+<div class="title">Video 15</div>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 ViideyHub
+</footer>
 
 </body>
 </html>
