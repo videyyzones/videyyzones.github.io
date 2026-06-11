@@ -3,152 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ViideyHub</title>
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#121212">
+
+<title>DoodStream Pro Style</title>
+
+<link rel="icon" href="logo.png">
 
 <style>
 body{
-    margin:0;
-    background:#111;
-    color:#fff;
-    font-family:Arial,sans-serif;
+background:#121212;
+font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+margin:0;
+padding:0;
+display:flex;
+flex-direction:column;
+align-items:center;
 }
 
-header{
-    background:#000;
-    padding:20px;
-    text-align:center;
+.main-container{
+width:100%;
+max-width:500px;
+margin-top:20px;
+padding:10px;
+box-sizing:border-box;
 }
 
-.container{
-    max-width:1200px;
-    margin:auto;
-    padding:15px;
+.video-card{
+background:#222;
+border-radius:4px;
+overflow:hidden;
+box-shadow:0 4px 15px rgba(0,0,0,.5);
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:15px;
+.video-player{
+background:#000;
+aspect-ratio:16/9;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+background-image:url('https://via.placeholder.com/1280x720/000000/FFFFFF?text=Poster+Film');
+background-size:cover;
+background-position:center;
 }
 
-.card{
-    background:#1a1a1a;
-    border-radius:10px;
-    overflow:hidden;
+.video-player::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:rgba(0,0,0,.4);
 }
 
-video{
-    width:100%;
-    display:block;
+.play-link{
+position:relative;
+z-index:2;
+text-decoration:none;
+transition:transform .2s cubic-bezier(.175,.885,.32,1.275);
 }
 
-.title{
-    padding:10px;
-    text-align:center;
+.play-link:hover{
+transform:scale(1.15);
 }
 
-footer{
-    margin-top:30px;
-    padding:20px;
-    text-align:center;
-    background:#000;
+.play-icon{
+width:0;
+height:0;
+border-top:25px solid transparent;
+border-left:40px solid #fff;
+border-bottom:25px solid transparent;
+margin-left:10px;
+filter:drop-shadow(0 0 8px rgba(0,0,0,.5));
+}
+
+.video-info{
+padding:15px;
+border-bottom:1px solid #333;
+}
+
+.video-title{
+color:#fff;
+font-size:16px;
+font-weight:500;
+display:block;
+margin-bottom:6px;
+}
+
+.video-channel{
+color:#999;
+font-size:13px;
+display:block;
+}
+
+.video-note{
+color:#bbb;
+font-size:12px;
+margin-top:10px;
+line-height:1.5;
+}
+
+.video-stats{
+display:flex;
+gap:15px;
+margin-top:15px;
+flex-wrap:wrap;
+}
+
+.stat-item{
+display:flex;
+align-items:center;
+color:#888;
+font-size:12px;
+}
+
+.stat-item svg{
+width:14px;
+height:14px;
+fill:#888;
+margin-right:5px;
+}
+
+.download-section{
+padding:15px;
+}
+
+.btn-download{
+display:flex;
+justify-content:center;
+align-items:center;
+background:#f0ad4e;
+color:#000;
+text-decoration:none;
+padding:14px;
+border-radius:4px;
+font-weight:bold;
+font-size:16px;
+transition:.2s;
+}
+
+.btn-download:hover{
+background:#ec971f;
+}
+
+.btn-download:active{
+transform:scale(.98);
+}
+
+@media(max-width:480px){
+.main-container{
+margin-top:10px;
+padding:8px;
+}
 }
 </style>
-
 </head>
 <body>
 
-<header>
-<h1>ViideyHub</h1>
-<p>Video Collection</p>
-</header>
+<div class="main-container">
+<div class="video-card">
 
-<div class="container">
-
-<div class="grid">
-
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/MnXDmMPE1.mp4"></video>
-<div class="title">live show</div>
+<div class="video-player">
+<a href="LINK_TUJUAN_PLAY_DISINI" target="_blank" rel="noopener noreferrer" class="play-link">
+<div class="play-icon"></div>
+</a>
 </div>
 
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/EydYHy9x1.mp4"></video>
-<div class="title">no anal</div>
+<div class="video-info">
+
+<span class="video-title">Ganti Judul Video Disini</span>
+
+<span class="video-channel">@gantidisini</span>
+
+<p class="video-note">
+Pastikan Anda memiliki izin untuk mengakses dan mengunduh konten ini.
+</p>
+
+<div class="video-stats">
+
+<div class="stat-item">
+<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+02:48:49
 </div>
 
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/5GzzyYoS1.mp4"></video>
-<div class="title">enak banget desah nya</div>
+<div class="stat-item">
+<svg viewBox="0 0 24 24"><path d="M18 2h-8L4.02 8 4 20c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-6 6h-2V4h2v4zm3 0h-2V4h2v4zm3 0h-2V4h2v4z"/></svg>
+1.0 GB
 </div>
 
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/dwJv4YSQ1.mp4"></video>
-<div class="title">main kasar</div>
-</div>
-
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/2WCMgGqN1.mp4"></video>
-<div class="title">yang lagi viral</div>
-</div>
-
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/M6v8A7pp1.mp4"></video>
-<div class="title">jembut nya lebat banget</div>
-</div>
-
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/2otnBByR1.mp4"></video>
-<div class="title">main sama pacar</div>
-</div>
-
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/A7xiEEOC1.mp4"></video>
-<div class="title">gairah janda memang beda</div>
-</div>
-
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/IK0kSMSI1.mp4"></video>
-<div class="title">live streaming</div>
-</div>
-
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/nVcq1AQl1.mp4"></video>
-<div class="title">manggo live</div>
-</div>
-
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/lwCkKxHk1.mp4"></video>
-<div class="title">bigo live</div>
-</div>
-
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/GWKfLi201.mp4"></video>
-<div class="title">di kasarin sama ayang</div>
-</div>
-
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/T6eoqa3X1.mp4"></video>
-<div class="title">pengen crot di mulut</div>
-</div>
-
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/GQNleLmh1.mp4"></video>
-<div class="title">pengen di kasarin</div>
-</div>
-
-<div class="card">
-<video controls preload="metadata" src="https://cdn2.videy.co/XKq0c3ox1.mp4"></video>
-<div class="title">vina garut di gangbang</div>
+<div class="stat-item">
+<svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+Feb 6, 2022
 </div>
 
 </div>
-
 </div>
 
-<footer>
-© 2026 ViideyHub
-</footer>
+<div class="download-section">
+<a href="LINK_DOWNLOAD_DISINI" target="_blank" rel="noopener noreferrer" class="btn-download">
+Download Now ➜
+</a>
+</div>
+
+</div>
+</div>
 
 </body>
 </html>
